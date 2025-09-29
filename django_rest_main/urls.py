@@ -24,5 +24,6 @@ urlpatterns = [
     path('students/',include('students.urls')),
 
     #api endpoints
-    path('api/v1/',include('api.urls'))
+    path('api/v1/',include('api.urls')),
+    
 ]

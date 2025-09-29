@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from employee.models import Employee
 from django.http import Http404
 from rest_framework import mixins,generics,viewsets
+from blogs.models import Blog,Comment
+from blogs.serializers import Blogserializer,Commentserializer
 
 #status gives status code or htttps response
 #function based view
@@ -179,3 +181,22 @@ class EmployeeViewSet(viewsets.ModelViewSet):
    queryset=Employee.objects.all()
    serializer_class=EmployeeSerializer
 
+
+#Blogs and Comments
+class BlogsView(generics.ListCreateAPIView):
+   queryset=Blog.objects.all()
+   serializer_class=Blogserializer
+
+class CommentsView(generics.ListCreateAPIView):
+   queryset=Comment.objects.all()
+   serializer_class=Commentserializer
+
+class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
+   queryset=Comment.objects.all()
+   serializer_class=Commentserializer
+   lookup_field='pk'
+
+class BlogDetailView(generics.RetrieveUpdateDestroyAPIView):
+   queryset=Blog.objects.all()
+   serializer_class=Blogserializer
+   lookup_field='pk'
